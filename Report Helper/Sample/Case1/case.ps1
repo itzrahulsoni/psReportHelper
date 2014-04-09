@@ -1,6 +1,6 @@
 Import-Module ..\..\Common\helperReport.psm1 -Force
 
-Set-ReportFile -Folder "D:\Documents\Desktop\Report Helper\Output" -File "something.htm" -OverWrite $true
+Set-ReportFile -Folder "D:\Documents\GitHub\psReportHelper\Report Helper\Output" -File "output.htm" -OverWrite $true
 Add-TableStart -Width 700 -CellPadding 3
 Set-TableColumnWidth 200, 200, 300
 Add-TableStartRow
@@ -12,4 +12,4 @@ Add-TableCells -data "Soni" -isRed $true -align "center"
 Add-TableCells -data "Test 1" -isGreen $true -align "right"
 Add-TableEndRow
 Add-TableEnd
-Get-Table -OpenInBrowser $true -InsertCSS "D:\Documents\Desktop\Report Helper\Common\style.css"
+Get-Table -OpenInBrowser $true -InsertCSS "D:\Documents\GitHub\psReportHelper\Report Helper\Common\style.css"

@@ -466,7 +466,8 @@ function Get-Table()
         {
             if(Test-Path($InsertCSS))
             {
-                Add-Content $script:file ("<head><style>" + (Get-Content($insertCSS)) + "</style></head>")
+                $tmpString = Get-Content($script:file)
+                Set-Content -Path $script:file -Value ("<head><style>" + (Get-Content($insertCSS)) + "</style></head>$tmpString")
             }
             else
             {
