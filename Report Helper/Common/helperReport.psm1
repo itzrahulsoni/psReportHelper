@@ -175,7 +175,7 @@ function Set-TableColumnWidth()
 {
     param(
         [parameter(Mandatory=$True, helpMessage="Specify width in pixel")]
-        [int[]]$width
+        [int[]]$Width
     )
     $string = ""
     $i = 0
@@ -278,19 +278,19 @@ function Add-TableCells()
 {
     param(
         [parameter(mandatory=$true, helpMessage="Specify the data that is to be added to the cell(s)")]
-        [string[]]$data, 
+        [string[]]$Data, 
         
         [parameter(helpMessage="Is this a header? Default is false")]
-        [boolean]$isHeader=$false,
+        [boolean]$IsHeader=$false,
 
         [parameter(helpMessage="Do you want to color this cell Green? Default is false")]
-        [boolean]$isGreen=$false,
+        [boolean]$IsGreen=$false,
 
         [parameter(helpMessage="Do you want to color this cell Red? Default is false")]
-        [boolean]$isRed=$false,
+        [boolean]$IsRed=$false,
         
         [parameter(helpMessage="Do you want to align this cell left, center or right? Default is left")] 
-        [string]$align="left"
+        [string]$Align="left"
     )
     if($isHeader -eq $true)
     {
@@ -478,6 +478,335 @@ function Get-Table()
     }
 }
 
+<#
+.Synopsis
+    Adds a text as a heading level 1.
+.DESCRIPTION
+    There are 6 heading text level you can select from Add-HeadingText1 to Add-HeadingText6 [Larger to Smaller]
+
+.EXAMPLE
+    Adds a heading text and aligns it to the center.
+    
+    Add-HeadingText1 -Message "Hello World - 1"
+
+    or 
+
+    Add-HeadingText1 -Message "Hello World - 1" -align "center"
+.EXAMPLE
+    Adds a heading text and aligns it to the left.
+
+    Add-HeadingText1 -Message "Hello World - 1" -align "left"
+.EXAMPLE
+    Sample to add multiple headers in descending order
+
+    Add-HeadingText1 -Message "Hello World - 1"
+    Add-HeadingText2 -Message "Hello World - 2"
+    Add-HeadingText3 -Message "Hello World - 3"
+    Add-HeadingText4 -Message "Hello World - 4"
+    Add-HeadingText5 -Message "Hello World - 5"
+    Add-HeadingText6 -Message "Hello World - 6"
+#>
+function Add-HeadingText1()
+{
+    param(
+        [parameter(Mandatory=$true, helpMessage="What do you want to print?")]
+        [string]$Message, 
+
+        [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
+        [string]$Align="center"
+    )
+    Add-Content $script:file "<h1 class=ps$align>$Message</h1>"
+}
+
+<#
+.Synopsis
+    Adds a text as a heading level 2.
+.DESCRIPTION
+    There are 6 heading text level you can select from Add-HeadingText1 to Add-HeadingText6 [Larger to Smaller]
+
+.EXAMPLE
+    Adds a heading text and aligns it to the center.
+    
+    Add-HeadingText2 -Message "Hello World - 1"
+
+    or 
+
+    Add-HeadingText2 -Message "Hello World - 1" -align "center"
+.EXAMPLE
+    Adds a heading text and aligns it to the left.
+
+    Add-HeadingText2 -Message "Hello World - 1" -align "left"
+.EXAMPLE
+    Sample to add multiple headers in descending order
+
+    Add-HeadingText1 -Message "Hello World - 1"
+    Add-HeadingText2 -Message "Hello World - 2"
+    Add-HeadingText3 -Message "Hello World - 3"
+    Add-HeadingText4 -Message "Hello World - 4"
+    Add-HeadingText5 -Message "Hello World - 5"
+    Add-HeadingText6 -Message "Hello World - 6"
+#>
+function Add-HeadingText2()
+{
+    param(
+        [parameter(Mandatory=$true, helpMessage="What do you want to print?")]
+        [string]$Message, 
+
+        [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
+        [string]$Align="center"
+    )
+    Add-Content $script:file "<h2 class=ps$align>$Message</h2>"
+}
+
+<#
+.Synopsis
+    Adds a text as a heading level 3.
+.DESCRIPTION
+    There are 6 heading text level you can select from Add-HeadingText1 to Add-HeadingText6 [Larger to Smaller]
+
+.EXAMPLE
+    Adds a heading text and aligns it to the center.
+    
+    Add-HeadingText3 -Message "Hello World - 1"
+
+    or 
+
+    Add-HeadingText3 -Message "Hello World - 1" -align "center"
+.EXAMPLE
+    Adds a heading text and aligns it to the left.
+
+    Add-HeadingText3 -Message "Hello World - 1" -align "left"
+.EXAMPLE
+    Sample to add multiple headers in descending order
+
+    Add-HeadingText1 -Message "Hello World - 1"
+    Add-HeadingText2 -Message "Hello World - 2"
+    Add-HeadingText3 -Message "Hello World - 3"
+    Add-HeadingText4 -Message "Hello World - 4"
+    Add-HeadingText5 -Message "Hello World - 5"
+    Add-HeadingText6 -Message "Hello World - 6"
+#>
+function Add-HeadingText3()
+{
+    param(
+        [parameter(Mandatory=$true, helpMessage="What do you want to print?")]
+        [string]$Message, 
+
+        [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
+        [string]$Align="center"
+    )
+    Add-Content $script:file "<h3 class=ps$align>$Message</h3>"
+}
+
+<#
+.Synopsis
+    Adds a text as a heading level 4.
+.DESCRIPTION
+    There are 6 heading text level you can select from Add-HeadingText1 to Add-HeadingText6 [Larger to Smaller]
+
+.EXAMPLE
+    Adds a heading text and aligns it to the center.
+    
+    Add-HeadingText4 -Message "Hello World - 1"
+
+    or 
+
+    Add-HeadingText4 -Message "Hello World - 1" -align "center"
+.EXAMPLE
+    Adds a heading text and aligns it to the left.
+
+    Add-HeadingText4 -Message "Hello World - 1" -align "left"
+.EXAMPLE
+    Sample to add multiple headers in descending order
+
+    Add-HeadingText1 -Message "Hello World - 1"
+    Add-HeadingText2 -Message "Hello World - 2"
+    Add-HeadingText3 -Message "Hello World - 3"
+    Add-HeadingText4 -Message "Hello World - 4"
+    Add-HeadingText5 -Message "Hello World - 5"
+    Add-HeadingText6 -Message "Hello World - 6"
+#>
+function Add-HeadingText4()
+{
+    param(
+        [parameter(Mandatory=$true, helpMessage="What do you want to print?")]
+        [string]$Message, 
+
+        [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
+        [string]$Align="center"
+    )
+    Add-Content $script:file "<h4 class=ps$align>$Message</h4>"
+}
+
+<#
+.Synopsis
+    Adds a text as a heading level 5.
+.DESCRIPTION
+    There are 6 heading text level you can select from Add-HeadingText1 to Add-HeadingText6 [Larger to Smaller]
+
+.EXAMPLE
+    Adds a heading text and aligns it to the center.
+    
+    Add-HeadingText5 -Message "Hello World - 1"
+
+    or 
+
+    Add-HeadingText5 -Message "Hello World - 1" -align "center"
+.EXAMPLE
+    Adds a heading text and aligns it to the left.
+
+    Add-HeadingText5 -Message "Hello World - 1" -align "left"
+.EXAMPLE
+    Sample to add multiple headers in descending order
+
+    Add-HeadingText1 -Message "Hello World - 1"
+    Add-HeadingText2 -Message "Hello World - 2"
+    Add-HeadingText3 -Message "Hello World - 3"
+    Add-HeadingText4 -Message "Hello World - 4"
+    Add-HeadingText5 -Message "Hello World - 5"
+    Add-HeadingText6 -Message "Hello World - 6"
+#>
+function Add-HeadingText5()
+{
+    param(
+        [parameter(Mandatory=$true, helpMessage="What do you want to print?")]
+        [string]$Message, 
+
+        [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
+        [string]$Align="center"
+    )
+    Add-Content $script:file "<h5 class=ps$align>$Message</h5>"
+}
+
+<#
+.Synopsis
+    Adds a text as a heading level 6.
+.DESCRIPTION
+    There are 6 heading text level you can select from Add-HeadingText1 to Add-HeadingText6 [Larger to Smaller]
+
+.EXAMPLE
+    Adds a heading text and aligns it to the center.
+    
+    Add-HeadingText6 -Message "Hello World - 1"
+
+    or 
+
+    Add-HeadingText6 -Message "Hello World - 1" -align "center"
+.EXAMPLE
+    Adds a heading text and aligns it to the left.
+
+    Add-HeadingText6 -Message "Hello World - 1" -align "left"
+.EXAMPLE
+    Sample to add multiple headers in descending order
+
+    Add-HeadingText1 -Message "Hello World - 1"
+    Add-HeadingText2 -Message "Hello World - 2"
+    Add-HeadingText3 -Message "Hello World - 3"
+    Add-HeadingText4 -Message "Hello World - 4"
+    Add-HeadingText5 -Message "Hello World - 5"
+    Add-HeadingText6 -Message "Hello World - 6"
+#>
+function Add-HeadingText6()
+{
+    param(
+        [parameter(Mandatory=$true, helpMessage="What do you want to print?")]
+        [string]$Message, 
+
+        [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
+        [string]$Align="center"
+    )
+    Add-Content $script:file "<h6 class=ps$align>$Message</h6>"
+}
+
+<#
+.Synopsis
+    Adds a text with appropriate font setting.
+.DESCRIPTION
+    Add a text to the Report file. It can be aligned left, center or right. You can also provide a font-size.
+
+.EXAMPLE
+    Add a text. Internally, it would add a <p> tag to the report.
+
+    Add-Text "Hello World!"
+.EXAMPLE
+    Add a text with alignment. Internally, it would add a <p> tag to the report.
+
+    Add-Text "Hello World" -align "Left"
+.EXAMPLE
+    Add a text with alignment and font size.
+
+    Add-Text "Hello World" -align "left" -fontsize "20px"
+#>
+function Add-Text()
+{
+    param(
+        [parameter(Mandatory=$true, helpMessage="What do you want to print?")]
+        [string]$Message, 
+
+        [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
+        [string]$Align="center",
+
+        [parameter(helpMessage="What is the size of the font in px? Default is 15px")]
+        [string]$FontSize="15px"
+    )
+    Add-Content $script:file "<p style='font-size:$fontSize;text-align:$align'>$Message</p>"
+}
+
+
+<#
+.Synopsis
+    Add a timestamp in multiple formats
+.DESCRIPTION
+    Add a timestamp. There are multiple formats to choose from. See examples for details.
+
+.EXAMPLE
+    Add a time stamp aligned to center with a font size of 20 px.
+    Add-TimeStamp -format 3 -align "center" -fontsize "20px"
+
+.EXAMPLE
+    Add a time stamp with a format
+
+    Add-TimeStamp           #Output - Saturday, April 12, 2014 9:58:42 AM
+    Add-TimeStamp -Format 1 #Output - Saturday, April 12, 2014 - 9:58:42 AM
+    Add-TimeStamp -Format 2 #Output - 12/04/2014 - 9:58:42 AM
+    Add-TimeStamp -Format 3 #Output - 04/12/2014 - 9:58:42 AM
+    Add-TimeStamp -Format 4 #Output - 04/12/2014
+    Add-TimeStamp -Format 5 #Output - 12/04/2014
+    Add-TimeStamp -Format 6 #Output - 9:58:42 AM
+    Add-TimeStamp -Format 7 #Output - 09:58:42 AM
+    Add-TimeStamp -Format 8 #Output - 09:58 AM
+    Add-TimeStamp -Format 9 #Output - 9:58 AM
+#>
+function Add-TimeStamp()
+{
+    param(
+        [parameter(helpMessage="Enter a number (0-9) for a format. See help for more details.")] 
+        [int]$Format=0,
+
+        [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
+        [string]$Align="center",
+
+        [parameter(helpMessage="What is the size of the font in px? Default is 15px")]
+        [string]$FontSize="15px"   
+    )
+    switch ($format)
+    {
+        0 { $time = (Get-Date) }
+        1 { $time = (Get-Date).ToLongDateString() + " - " + (Get-Date).ToLongTimeString() }
+        2 { $time = (Get-Date).ToString("dd/MM/yyyy") + " - " + (Get-Date).ToLongTimeString() }
+        3 { $time = (Get-Date).ToString("MM/dd/yyyy") + " - " + (Get-Date).ToLongTimeString() }
+        4 { $time = (Get-Date).ToString("MM/dd/yyyy") }
+        5 { $time = (Get-Date).ToString("dd/MM/yyyy") }
+        6 { $time = (Get-Date).ToLongTimeString() }
+        7 { $time = (Get-Date).ToString("hh:mm:ss tt") }
+        8 { $time = (Get-Date).ToString("hh:mm tt") }
+        9 { $time = (Get-Date).ToString("h:mm tt") }
+        Default { $time = (Get-Date) }
+    }   
+    Add-Text -Message $time -align $align -fontSize $fontSize
+    return $time
+}
+
 function IsReportNull()
 {
     if($script:File -eq $null)
@@ -499,3 +828,11 @@ Export-ModuleMember -Function Add-TableCells
 Export-ModuleMember -Function Get-Table
 Export-ModuleMember -Function Set-TableColumnWidth
 Export-ModuleMember -Function Set-ReportFile
+Export-ModuleMember -Function Add-HeadingText1
+Export-ModuleMember -Function Add-HeadingText2
+Export-ModuleMember -Function Add-HeadingText3
+Export-ModuleMember -Function Add-HeadingText4
+Export-ModuleMember -Function Add-HeadingText5
+Export-ModuleMember -Function Add-HeadingText6
+Export-ModuleMember -Function Add-Text
+Export-ModuleMember -Function Add-TimeStamp
