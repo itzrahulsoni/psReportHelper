@@ -4,6 +4,8 @@ This is a PowerShell script module for creating an HTML report with CSS. The ide
 
 You can modify the CSS for a common look and feel.
 
+You can take a look at Sample\Case1\case1.ps1 to learn how to use the module quickly
+
 Get-Help -full for the command below for detailed help
 
 ##### Set-ReportFile - Set the file where you want to emit a table
