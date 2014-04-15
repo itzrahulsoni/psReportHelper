@@ -871,26 +871,67 @@ function Add-LineBreak()
     Add-ListStart -Style 5  # Lower Roman numbers
     Add-ListStart -Style 6  # Upper Alphabets
     Add-ListStart -Style 7  # Upper Roman
+
+.EXAMPLE
+    If there are more than one list with -IsInline $true, the lists will get aligned next to each other appearing like columns
+
+    Add-ListStart -Style 3 -IsInline $true
+    Add-ListItem -Message "Item 1"
+    Add-ListItem -Message "Item 2" -IsBold $true -Color Blue
+    Add-ListItem -Message "Item 3" -IsBold $true -Color Red
+    Add-ListItem -Message "Item 4" -Color Green
+    Add-ListItem -Message "Item 5"
+    Add-ListEnd 
+
+    Add-ListStart -Style 5 -IsInline $true
+    Add-ListItem -Message "Item 1", "Item 2", "Item 3" -IsBold $true
+    Add-ListItem -Message "Item 1"
+    Add-ListItem -Message "Item 2" -IsBold $true -Color Blue
+    Add-ListItem -Message "Item 3" -IsBold $true -Color Red
+    Add-ListItem -Message "Item 4", "Item 5"
+    Add-ListItem -Message "Item 6" -Color Blue -IsBold $true -FontSize 20px
+    Add-ListEnd 
 #>
 function Add-ListStart()
 {
     param(
         [parameter(helpMessage="Choose 0-7 for different styles of list")]
-        [int]$Style=0
+        [int]$Style=0,
+
+        [parameter(helpMessage="Do you want to display as an inline block?")]
+        [boolean]$IsInline
     )
 
     if(IsReportNull -eq $true) { return }
     $listType = "ul"
-    switch ($Style)
+
+    if($IsInline)
     {
-        0 { Add-Content $script:file ("<$listType style='list-style-type:disc'>") }
-        1 { Add-Content $script:file ("<$listType style='list-style-type:circle'>") }
-        2 { Add-Content $script:file ("<$listType style='list-style-type:square'>") }
-        3 { Add-Content $script:file ("<$listType style='list-style-type:decimal'>") }
-        4 { Add-Content $script:file ("<$listType style='list-style-type:lower-alpha'>") }
-        5 { Add-Content $script:file ("<$listType style='list-style-type:lower-roman'>") }
-        6 { Add-Content $script:file ("<$listType style='list-style-type:upper-alpha'>") }
-        7 { Add-Content $script:file ("<$listType style='list-style-type:upper-roman'>") }
+        switch ($Style)
+        {
+            0 { Add-Content $script:file ("<$listType style='display:inline-block;vertical-align:top;list-style-type:disc;'>") }
+            1 { Add-Content $script:file ("<$listType style='display:inline-block;vertical-align:top;list-style-type:circle'>") }
+            2 { Add-Content $script:file ("<$listType style='display:inline-block;vertical-align:top;list-style-type:square'>") }
+            3 { Add-Content $script:file ("<$listType style='display:inline-block;vertical-align:top;list-style-type:decimal'>") }
+            4 { Add-Content $script:file ("<$listType style='display:inline-block;vertical-align:top;list-style-type:lower-alpha'>") }
+            5 { Add-Content $script:file ("<$listType style='display:inline-block;vertical-align:top;list-style-type:lower-roman'>") }
+            6 { Add-Content $script:file ("<$listType style='display:inline-block;vertical-align:top;list-style-type:upper-alpha'>") }
+            7 { Add-Content $script:file ("<$listType style='display:inline-block;vertical-align:top;list-style-type:upper-roman'>") }
+        }
+    }
+    else
+    {
+        switch ($Style)
+        {
+            0 { Add-Content $script:file ("<$listType style='list-style-type:disc;'>") }
+            1 { Add-Content $script:file ("<$listType style='list-style-type:circle'>") }
+            2 { Add-Content $script:file ("<$listType style='list-style-type:square'>") }
+            3 { Add-Content $script:file ("<$listType style='list-style-type:decimal'>") }
+            4 { Add-Content $script:file ("<$listType style='list-style-type:lower-alpha'>") }
+            5 { Add-Content $script:file ("<$listType style='list-style-type:lower-roman'>") }
+            6 { Add-Content $script:file ("<$listType style='list-style-type:upper-alpha'>") }
+            7 { Add-Content $script:file ("<$listType style='list-style-type:upper-roman'>") }
+        }
     }
 }
 
@@ -939,7 +980,7 @@ function Add-ListEnd()
     Add-ListStart -Style 3
     Add-ListItem -Message "Item 1", "Item 2", "Item 3" -IsBold $true
     Add-ListItem -Message "Item 4", "Item 5"
-    Add-ListItem -Message "Item 6" -Color Red
+    Add-ListItem -Message "Item 6" -Color Blue -IsBold $true -FontSize 15px
     Add-ListEnd 
 #>
 function Add-ListItem()

@@ -35,7 +35,7 @@ Add-TimeStamp -Format 4
 Add-TimeStamp -Format 6
 
 #Working with list
-Add-ListStart -Style 5
+Add-ListStart -Style 3 -IsInline $true
 Add-ListItem -Message "Item 1"
 Add-ListItem -Message "Item 2" -IsBold $true -Color Blue
 Add-ListItem -Message "Item 3" -IsBold $true -Color Red
@@ -43,10 +43,13 @@ Add-ListItem -Message "Item 4" -Color Green
 Add-ListItem -Message "Item 5"
 Add-ListEnd 
 
-Add-ListStart -Style 3
+Add-ListStart -Style 5 -IsInline $true
 Add-ListItem -Message "Item 1", "Item 2", "Item 3" -IsBold $true
+Add-ListItem -Message "Item 1"
+Add-ListItem -Message "Item 2" -IsBold $true -Color Blue
+Add-ListItem -Message "Item 3" -IsBold $true -Color Red
 Add-ListItem -Message "Item 4", "Item 5"
-Add-ListItem -Message "Item 6" -Color Red
+Add-ListItem -Message "Item 6" -Color Blue -IsBold $true -FontSize 20px
 Add-ListEnd 
 
 #Viewing the table in browser
