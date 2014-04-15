@@ -26,7 +26,7 @@ Add-Text -Message "Hello World" -align "center"
 
 #Working with line breaks
 Add-Text -Message "Before Line break"
-Add-LineBreak -Number 3
+Add-LineBreak -Count 3
 Add-Text -Message "After line break"
 
 #Working with time stamp

@@ -820,21 +820,21 @@ function Add-TimeStamp()
 .EXAMPLE
     Add 3 line breaks
 
-    Add-LineBreak -Number 3
+    Add-LineBreak -Count 3
 #>
 function Add-LineBreak()
 {
     param(
         [parameter(helpMessage="Enter the number of line breaks you want to insert.")] 
-        [int]$Number=1
+        [int]$Count=1
     )
 
-    if($Number -le 0)
+    if($Count -le 0)
     {
         Write-Host -ForegroundColor Red "You must have at least 1 line break! Try again with a number greater than or equal to 1"
         return        
     }
-    Add-Text -Message ("<BR />" * $Number) -align "center"
+    Add-Text -Message ("<BR />" * $Count) -align "center"
 }
 
 function IsReportNull()
