@@ -25,3 +25,6 @@ Get-Help -full for the command below for detailed help
 ##### Add-Text - Add a text with appropriate font setting and alignment
 ##### Add-TimeStamp - Add timestamps in multiple formats
 ##### Add-LineBreak - Add one or multiple line breaks
+##### Add-ListStart - Start a list
+##### Add-ListItem - Add list items
+##### Add-ListEnd - End a list
