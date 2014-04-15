@@ -177,6 +177,7 @@ function Set-TableColumnWidth()
         [parameter(Mandatory=$True, helpMessage="Specify width in pixel")]
         [int[]]$Width
     )
+    if(IsReportNull -eq $true) { return }
     $string = ""
     $i = 0
     foreach($w in $width)
@@ -221,6 +222,7 @@ function Set-TableColumnWidth()
 #>
 function Add-TableStartRow()
 {
+    if(IsReportNull -eq $true) { return }
     Add-Content $script:file "<tr>"
 }
 
@@ -292,6 +294,7 @@ function Add-TableCells()
         [parameter(helpMessage="Do you want to align this cell left, center or right? Default is left")] 
         [string]$Align="left"
     )
+    if(IsReportNull -eq $true) { return }
     if($isHeader -eq $true)
     {
         $string = ""
@@ -372,6 +375,7 @@ function Add-TableCells()
 #>
 function Add-TableEndRow()
 {
+    if(IsReportNull -eq $true) { return }
     Add-Content $script:file "</tr>"
 }
 
@@ -409,6 +413,7 @@ function Add-TableEndRow()
 #>
 function Add-TableEnd()
 {
+    if(IsReportNull -eq $true) { return }
     Add-Content $script:file "</table>"
 }
 
@@ -515,6 +520,7 @@ function Add-HeadingText1()
         [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
         [string]$Align="center"
     )
+    if(IsReportNull -eq $true) { return }
     Add-Content $script:file "<h1 class=ps$align>$Message</h1>"
 }
 
@@ -555,6 +561,7 @@ function Add-HeadingText2()
         [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
         [string]$Align="center"
     )
+    if(IsReportNull -eq $true) { return }
     Add-Content $script:file "<h2 class=ps$align>$Message</h2>"
 }
 
@@ -595,6 +602,7 @@ function Add-HeadingText3()
         [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
         [string]$Align="center"
     )
+    if(IsReportNull -eq $true) { return }
     Add-Content $script:file "<h3 class=ps$align>$Message</h3>"
 }
 
@@ -635,6 +643,7 @@ function Add-HeadingText4()
         [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
         [string]$Align="center"
     )
+    if(IsReportNull -eq $true) { return }
     Add-Content $script:file "<h4 class=ps$align>$Message</h4>"
 }
 
@@ -675,6 +684,7 @@ function Add-HeadingText5()
         [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
         [string]$Align="center"
     )
+    if(IsReportNull -eq $true) { return }
     Add-Content $script:file "<h5 class=ps$align>$Message</h5>"
 }
 
@@ -715,6 +725,7 @@ function Add-HeadingText6()
         [parameter(helpMessage="Do you want to align this cell left, center or right? Default is center")] 
         [string]$Align="center"
     )
+    if(IsReportNull -eq $true) { return }
     Add-Content $script:file "<h6 class=ps$align>$Message</h6>"
 }
 
@@ -749,6 +760,7 @@ function Add-Text()
         [parameter(helpMessage="What is the size of the font in px? Default is 15px")]
         [string]$FontSize="15px"
     )
+    if(IsReportNull -eq $true) { return }
     Add-Content $script:file "<p style='font-size:$fontSize;text-align:$align'>$Message</p>"
 }
 
@@ -789,6 +801,7 @@ function Add-TimeStamp()
         [parameter(helpMessage="What is the size of the font in px? Default is 15px")]
         [string]$FontSize="15px"   
     )
+    if(IsReportNull -eq $true) { return }
     switch ($format)
     {
         0 { $time = (Get-Date) }
@@ -828,13 +841,124 @@ function Add-LineBreak()
         [parameter(helpMessage="Enter the number of line breaks you want to insert.")] 
         [int]$Count=1
     )
-
+    if(IsReportNull -eq $true) { return }
     if($Count -le 0)
     {
         Write-Host -ForegroundColor Red "You must have at least 1 line break! Try again with a number greater than or equal to 1"
         return        
     }
-    Add-Text -Message ("<BR />" * $Count) -align "center"
+    Add-Text -Message ("<BR />" * $Count)
+}
+
+<#
+.Synopsis
+    Start a list
+.DESCRIPTION
+    Start an list with different list styles
+
+.EXAMPLE
+    Start an unordered list with type = disc
+    
+    Add-ListStart
+.EXAMPLE
+    Start an unordered list with different types
+
+    Add-ListStart -Style 0  # Disc
+    Add-ListStart -Style 1  # Circle
+    Add-ListStart -Style 2  # Square
+    Add-ListStart -Style 3  # Decimal
+    Add-ListStart -Style 4  # Lower Alphabets
+    Add-ListStart -Style 5  # Lower Roman numbers
+    Add-ListStart -Style 6  # Upper Alphabets
+    Add-ListStart -Style 7  # Upper Roman
+#>
+function Add-ListStart()
+{
+    param(
+        [parameter(helpMessage="Choose 0-7 for different styles of list")]
+        [int]$Style=0
+    )
+
+    if(IsReportNull -eq $true) { return }
+    $listType = "ul"
+    switch ($Style)
+    {
+        0 { Add-Content $script:file ("<$listType style='list-style-type:disc'>") }
+        1 { Add-Content $script:file ("<$listType style='list-style-type:circle'>") }
+        2 { Add-Content $script:file ("<$listType style='list-style-type:square'>") }
+        3 { Add-Content $script:file ("<$listType style='list-style-type:decimal'>") }
+        4 { Add-Content $script:file ("<$listType style='list-style-type:lower-alpha'>") }
+        5 { Add-Content $script:file ("<$listType style='list-style-type:lower-roman'>") }
+        6 { Add-Content $script:file ("<$listType style='list-style-type:upper-alpha'>") }
+        7 { Add-Content $script:file ("<$listType style='list-style-type:upper-roman'>") }
+    }
+}
+
+<#
+.Synopsis
+    End a list
+.DESCRIPTION
+    End an ordered or unordered list
+
+.EXAMPLE
+    End a list that has already started
+    
+    Add-ListEnd
+.EXAMPLE
+    End an ordered list
+
+    Add-ListEnd -IsOrdered $true
+#>
+function Add-ListEnd()
+{
+    if(IsReportNull -eq $true) { return }
+    $listType = "ul"
+    Add-Content $script:file ("</$listType>")
+}
+
+<#
+.Synopsis
+    Add a list item to the list
+.DESCRIPTION
+    Add as many items as you like using Add-ListItem
+
+.EXAMPLE
+    Add a List Item with a different style, with bold items and different colors
+
+    Add-ListStart -Style 5
+    Add-ListItem -Message "Item 1"
+    Add-ListItem -Message "Item 2" -IsBold $true -Color Blue
+    Add-ListItem -Message "Item 3" -IsBold $true -Color Red
+    Add-ListItem -Message "Item 4" -Color Green
+    Add-ListItem -Message "Item 5"
+    Add-ListEnd 
+#>
+function Add-ListItem()
+{
+    param(
+        [parameter(helpMessage="What do you want to add?")]
+        [string]$Message,
+
+        [parameter(helpMessage="Is this bold? Default is false")]
+        [boolean]$IsBold=$false,
+
+        [Parameter(HelpMessage="Color of text in Hex string or Web color. You can provide a valid color name like red or green. You can also provide a hex string. [Default is Black]")] 
+        [string]$Color="black",
+
+        [parameter(helpMessage="What is the size of the font in px? Default is 15px")]
+        [string]$FontSize="15px"
+    )
+
+    if(IsReportNull -eq $true) { return }
+    $listType = "ul"
+    if($IsBold)
+    {
+        Add-Content $script:file ("<li style='font-size:$FontSize;color:$Color'><b>$Message</b></li>")
+    }
+    else
+    {
+        Add-Content $script:file ("<li style='font-size:$FontSize;'>$Message</li>")
+    }
 }
 
 function IsReportNull()
@@ -867,3 +991,6 @@ Export-ModuleMember -Function Add-HeadingText6
 Export-ModuleMember -Function Add-Text
 Export-ModuleMember -Function Add-TimeStamp
 Export-ModuleMember -Function Add-LineBreak
+Export-ModuleMember -Function Add-ListStart
+Export-ModuleMember -Function Add-ListItem
+Export-ModuleMember -Function Add-ListEnd

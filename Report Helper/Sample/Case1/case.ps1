@@ -34,5 +34,15 @@ Add-TimeStamp -Format 1
 Add-TimeStamp -Format 4
 Add-TimeStamp -Format 6
 
+#Working with list
+Add-ListStart -Style 5
+Add-ListItem -Message "Item 1"
+Add-ListItem -Message "Item 2" -IsBold $true -Color Blue
+Add-ListItem -Message "Item 3" -IsBold $true -Color Red
+Add-ListItem -Message "Item 4" -Color Green
+Add-ListItem -Message "Item 5"
+Add-ListEnd 
+
+
 #Viewing the table in browser
 Get-Table -OpenInBrowser $true -InsertCSS "D:\Documents\GitHub\psReportHelper\Report Helper\Common\style.css"
