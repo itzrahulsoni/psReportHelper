@@ -43,6 +43,11 @@ Add-ListItem -Message "Item 4" -Color Green
 Add-ListItem -Message "Item 5"
 Add-ListEnd 
 
+Add-ListStart -Style 3
+Add-ListItem -Message "Item 1", "Item 2", "Item 3" -IsBold $true
+Add-ListItem -Message "Item 4", "Item 5"
+Add-ListItem -Message "Item 6" -Color Red
+Add-ListEnd 
 
 #Viewing the table in browser
 Get-Table -OpenInBrowser $true -InsertCSS "D:\Documents\GitHub\psReportHelper\Report Helper\Common\style.css"

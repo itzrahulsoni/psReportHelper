@@ -932,12 +932,21 @@ function Add-ListEnd()
     Add-ListItem -Message "Item 4" -Color Green
     Add-ListItem -Message "Item 5"
     Add-ListEnd 
+
+.EXAMPLE
+    Add an array of items as List Items with a different style, with bold items and different colors
+
+    Add-ListStart -Style 3
+    Add-ListItem -Message "Item 1", "Item 2", "Item 3" -IsBold $true
+    Add-ListItem -Message "Item 4", "Item 5"
+    Add-ListItem -Message "Item 6" -Color Red
+    Add-ListEnd 
 #>
 function Add-ListItem()
 {
     param(
         [parameter(helpMessage="What do you want to add?")]
-        [string]$Message,
+        [string[]]$Message,
 
         [parameter(helpMessage="Is this bold? Default is false")]
         [boolean]$IsBold=$false,
@@ -951,13 +960,16 @@ function Add-ListItem()
 
     if(IsReportNull -eq $true) { return }
     $listType = "ul"
-    if($IsBold)
+    foreach($line in $Message)
     {
-        Add-Content $script:file ("<li style='font-size:$FontSize;color:$Color'><b>$Message</b></li>")
-    }
-    else
-    {
-        Add-Content $script:file ("<li style='font-size:$FontSize;'>$Message</li>")
+        if($IsBold)
+        {
+            Add-Content $script:file ("<li style='font-size:$FontSize;color:$Color'><b>$line</b></li>")
+        }
+        else
+        {
+            Add-Content $script:file ("<li style='font-size:$FontSize;color:$Color'>$line</li>")
+        }
     }
 }
 
