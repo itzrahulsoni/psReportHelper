@@ -24,3 +24,4 @@ Get-Help -full for the command below for detailed help
 ##### Add-HeadingText6 - Add the 6th largest heading
 ##### Add-Text - Add a text with appropriate font setting and alignment
 ##### Add-TimeStamp - Add timestamps in multiple formats
+##### Add-LineBreak - Add one or multiple line breaks
