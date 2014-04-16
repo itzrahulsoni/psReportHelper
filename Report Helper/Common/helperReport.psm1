@@ -113,16 +113,16 @@ function Add-TableStart()
 {
     param(
         [Parameter(HelpMessage="Width of table in pixels. [Default is 600]")]
-        [int]$Width=600,
+        [string]$Width=600,
         
         [Parameter(HelpMessage="Space between the cells [Default is 0]")] 
-        [int]$CellSpacing=0,
+        [string]$CellSpacing=0,
         
         [Parameter(HelpMessage="Space between the content and border of the cell [Default is 2]")] 
-        [int]$CellPadding=2, 
+        [string]$CellPadding=2, 
 
         [Parameter(HelpMessage="Width of the border in pixels [Default is 1]")]
-        [int]$BorderWidth=1,
+        [string]$BorderWidth=1,
         
         [Parameter(HelpMessage="Color of border in Hex string or Web color. You can provide a valid color name like red or green. You can also provide a hex string. [Default is Black]")] 
         [string]$BorderColor="black"
@@ -409,7 +409,7 @@ function Add-TableEndRow()
     Add-TableEnd
     Get-Table -OpenInBrowser $true -InsertCSS "C:\Temp\style.css"
 .EXAMPLE
-   Add-TableEnd
+    Add-TableEnd
 #>
 function Add-TableEnd()
 {
@@ -1014,6 +1014,67 @@ function Add-ListItem()
     }
 }
 
+<#
+.Synopsis
+    Adds an area with a scroll bar that appears automatically if the content is wider than the area.
+.DESCRIPTION
+    Basically, it adds a DIV with appropriate styling so that you can fit in a wider table or something similar. 
+    If the DIV is 800px, and table is 1000px for example... you will automatically see horizontal scroll bar appear.
+
+.EXAMPLE
+    Add a scrollable area with a text within. Default value is 800 px wide, 1 px border width, 
+    black border color, padding of 2 px, and centrally aligned.
+
+    Add-ScrollableAreaStart
+    Add-Text "Hello Again!"
+    Add-ScrollableAreaEnd
+
+.EXAMPLE
+    Add a scrollable area with a blue border color, 1px wide borderwidth, and centrally aligned with a padding of 1px throughout.
+
+    Add-ScrollableAreaStart -BorderColor Blue -BorderWidth 1 -Margin "auto" -Padding 1
+    Add-Text "Hello world!"
+    Add-ScrollableAreaEnd
+#>
+function Add-ScrollableAreaStart()
+{
+    param(
+        [Parameter(HelpMessage="Width of the area in pixels. [Default is 800]")]
+        [string]$Width=800,
+        
+        [Parameter(HelpMessage="Width of the border in pixels [Default is 0]")]
+        [string]$BorderWidth=1,
+        
+        [Parameter(HelpMessage="Color of border in Hex string or Web color. You can provide a valid color name like red or green. You can also provide a hex string. [Default is Black]")] 
+        [string]$BorderColor="black",
+
+        [Parameter(HelpMessage="Margin for this box [default is auto, this will make it center aligned] 10px 5px 3px 1px would mean margin of top 10px, right 5px, bottom 3px and left 1px respectively")]
+        [string]$Margin="auto",
+
+        [Parameter(HelpMessage="Padding for the this box [default is 2px]")]
+        [string]$Padding="2"
+    )
+    if(IsReportNull -eq $true) { return }
+    Add-Content $script:file "<div style='width:$Width;overflow:auto;border-style:solid;border-width:$BorderWidth;border-color:$BorderColor;margin:$Margin;padding:$Padding'>"
+}
+
+
+<#
+.Synopsis
+    Inserts an end tag for DIV.
+.DESCRIPTION
+    Every time you open a DIV tag, you should close it. This command will help you close the DIV tag appropriately.
+
+.EXAMPLE
+    Add-ScrollableAreaStart
+    Add-Text "Hello Again!"
+    Add-ScrollableAreaEnd
+#>
+function Add-ScrollableAreaEnd()
+{
+    Add-Content $script:file "</div>"
+}
+
 function IsReportNull()
 {
     if($script:File -eq $null)
@@ -1047,3 +1108,5 @@ Export-ModuleMember -Function Add-LineBreak
 Export-ModuleMember -Function Add-ListStart
 Export-ModuleMember -Function Add-ListItem
 Export-ModuleMember -Function Add-ListEnd
+Export-ModuleMember -Function Add-ScrollableAreaStart
+Export-ModuleMember -Function Add-ScrollableAreaEnd

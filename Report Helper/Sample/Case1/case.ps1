@@ -52,5 +52,14 @@ Add-ListItem -Message "Item 4", "Item 5"
 Add-ListItem -Message "Item 6" -Color Blue -IsBold $true -FontSize 20px
 Add-ListEnd 
 
+#Working with Scrollable area
+Add-ScrollableAreaStart -BorderColor Blue -BorderWidth 1 -Margin "auto" -Padding 1
+Add-Text "Hello world!"
+Add-ScrollableAreaEnd
+
+Add-ScrollableAreaStart -Margin "10px auto auto auto"
+Add-Text "Hello Again!"
+Add-ScrollableAreaEnd
+
 #Viewing the table in browser
 Get-Table -OpenInBrowser $true -InsertCSS "D:\Documents\GitHub\psReportHelper\Report Helper\Common\style.css"
