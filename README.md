@@ -28,3 +28,5 @@ Get-Help -full for the command below for detailed help
 ##### Add-ListStart - Start a list
 ##### Add-ListItem - Add list items
 ##### Add-ListEnd - End a list
+##### Add-ScrollableAreaStart - Start an area with a specific width. If the content is wider, scrollbar would appear.
+##### Add-ScrollableAreaEnd - Ends the scrollable area.
