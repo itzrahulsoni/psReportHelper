@@ -279,8 +279,8 @@ function Add-TableStartRow()
 function Add-TableCells()
 {
     param(
-        [parameter(mandatory=$true, helpMessage="Specify the data that is to be added to the cell(s)")]
-        [string[]]$Data, 
+        [parameter(helpMessage="Specify the data that is to be added to the cell(s)")]
+        [string[]]$Data="", 
         
         [parameter(helpMessage="Is this a header? Default is false")]
         [boolean]$IsHeader=$false,
@@ -295,7 +295,6 @@ function Add-TableCells()
         [string]$Align="left"
     )
     if(IsReportNull -eq $true) { return }
-    if($Data -eq $null) { $Data = "" }
     if($isHeader -eq $true)
     {
         $string = ""
