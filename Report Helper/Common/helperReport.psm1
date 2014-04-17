@@ -1072,6 +1072,7 @@ function Add-ScrollableAreaStart()
 #>
 function Add-ScrollableAreaEnd()
 {
+    if(IsReportNull -eq $true) { return }
     Add-Content $script:file "</div>"
 }
 
