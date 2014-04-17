@@ -295,6 +295,7 @@ function Add-TableCells()
         [string]$Align="left"
     )
     if(IsReportNull -eq $true) { return }
+    if($Data -eq $null) { $Data = "" }
     if($isHeader -eq $true)
     {
         $string = ""
