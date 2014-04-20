@@ -2,6 +2,8 @@
 
 This is a PowerShell script module for creating an HTML report with CSS. The idea is to build on this, so that multiple PowerShell scripts can use this common repository for creating elaborate HTML reports that contains Tables, Lists, etc with uniform colors and other details.
 
+For more details and example on ReportHelper, visit http://www.dotnetscraps.com/dotnetscraps/?tag=/reporthelper
+
 You can modify the CSS for a common look and feel.
 
 You can take a look at Sample\Case1\case1.ps1 to learn how to use the module quickly
