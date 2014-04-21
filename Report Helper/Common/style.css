@@ -44,7 +44,6 @@ h1.pscenter, h2.pscenter, h3.pscenter, h4.pscenter, h5.pscenter, h6.pscenter{
 }
 
 th.psgreen, th.psred, th.psnormal {
-    border: 1px solid black;
     text-align: center;
 }
 
@@ -64,16 +63,13 @@ th.psnormal {
 }
 
 td.psleft {
-    border: 1px solid black;
     text-align: left;
 }
 
 td.psright {
-    border: 1px solid black;
     text-align: right;
 }
 
 td.pscenter {
-    border: 1px solid black;
     text-align: center;
 }

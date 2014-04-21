@@ -292,7 +292,10 @@ function Add-TableCells()
         [boolean]$IsRed=$false,
         
         [parameter(helpMessage="Do you want to align this cell left, center or right? Default is left")] 
-        [string]$Align="left"
+        [string]$Align="left",
+
+        [Parameter(HelpMessage="Color of border in Hex string or Web color. You can provide a valid color name like red or green. You can also provide a hex string. [Default is Black]")] 
+        [string]$BorderColor="black"
     )
     if(IsReportNull -eq $true) { return }
     if($isHeader -eq $true)
@@ -302,15 +305,15 @@ function Add-TableCells()
         {
             if($iSGreen -eq $true)
             {
-                $string += "<th class=psgreen>$val</th>"
+                $string += "<th class=psgreen style=""Border-Color:$BorderColor"">$val</th>"
             }
             elseif($isRed -eq $true)
             {
-                $string += "<th class=psred>$val</th>"
+                $string += "<th class=psred style=""Border-Color:$BorderColor"">$val</th>"
             }
             else
             {
-                $string += "<th class=psnormal>$val</th>"
+                $string += "<th class=psnormal style=""Border-Color:$BorderColor"">$val</th>"
             }
         }
         Add-Content $file $string
@@ -325,15 +328,15 @@ function Add-TableCells()
         {
             if($iSGreen -eq $true)
             {
-                $string += "<td class=""$alignGreen"">$val</td>"
+                $string += "<td class=""$alignGreen"" style=""Border-Color:$BorderColor"">$val</td>"
             }
             elseif($isRed -eq $true)
             {
-                $string += "<td class=""$alignRed"">$val</td>"
+                $string += "<td class=""$alignRed"" style=""Border-Color:$BorderColor"">$val</td>"
             }
             else
             {
-                $string += "<td class=$align>$val</td>"
+                $string += "<td class=$align style=""Border-Color:$BorderColor"">$val</td>"
             }
         }
         Add-Content $file $string

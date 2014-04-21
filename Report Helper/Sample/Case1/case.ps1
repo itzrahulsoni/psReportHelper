@@ -62,4 +62,4 @@ Add-Text "Hello Again!"
 Add-ScrollableAreaEnd
 
 #Viewing the table in browser
-Get-Table -OpenInBrowser $true -InsertCSS "D:\Documents\GitHub\psReportHelper\Report Helper\Common\style.css"
+Get-Table -OpenInBrowser $true -InsertCSS "..\..\Common\style.css"
