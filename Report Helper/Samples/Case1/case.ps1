@@ -1,6 +1,6 @@
-Import-Module ..\..\Common\helperReport.psm1 -Force
-
-Set-ReportFile -Folder "D:\Documents\GitHub\psReportHelper\Report Helper\Output" -File "output.htm" -OverWrite $true
+$common = "..\..\Common"
+Import-Module "$Common\helperReport.psm1" -Force
+Set-ReportFile -Folder "." -File ".\Output.htm" -OverWrite $true   #Set a report file
 
 #Working with Table
 Add-TableStart -Width 700 -CellPadding 3
@@ -10,8 +10,8 @@ Add-TableCells -data "Name", "Address", "WebSite" -isHeader $true
 Add-TableEndRow
 Add-TableStartRow
 Add-TableCells -data "Rahul" -isGreen $true -align "left"
-Add-TableCells -data "Soni" -isRed $true -align "center"
-Add-TableCells -data "Test 1" -isGreen $true -align "right"
+Add-TableCells -data "Soni" -isRed $true -align "left"
+Add-TableCells -data "www.dotnetscraps.com" -isGreen $true -align "center"
 Add-TableEndRow
 Add-TableEnd
 
@@ -52,14 +52,31 @@ Add-ListItem -Message "Item 4", "Item 5"
 Add-ListItem -Message "Item 6" -Color Blue -IsBold $true -FontSize 20px
 Add-ListEnd 
 
-#Working with Scrollable area
-Add-ScrollableAreaStart -BorderColor Blue -BorderWidth 1 -Margin "auto" -Padding 1
-Add-Text "Hello world!"
-Add-ScrollableAreaEnd
-
+#Working with Scrollable area with smaller content
 Add-ScrollableAreaStart -Margin "10px auto auto auto"
 Add-Text "Hello Again!"
 Add-ScrollableAreaEnd
 
+Add-LineBreak -Count 2
+
+#Working with Scrollable area with larger content
+Add-ScrollableAreaStart -BorderColor White -BorderWidth 1 -Margin "auto" -Padding 2 -Width 600
+
+    #Add a table with larger width than the box
+    Add-TableStart -Width 700 -CellPadding 3
+    Set-TableColumnWidth 200, 200, 300
+    Add-TableStartRow
+    Add-TableCells -data "Name", "Address", "WebSite" -isHeader $true
+    Add-TableEndRow
+    Add-TableStartRow
+    Add-TableCells -data "Rahul" -isGreen $true -align "left"
+    Add-TableCells -data "Soni" -isRed $true -align "left"
+    Add-TableCells -data "www.dotnetscraps.com" -isGreen $true -align "center"
+    Add-TableEndRow
+    Add-TableEnd
+
+Add-ScrollableAreaEnd
+
+Add-LineBreak -Count 2
 #Viewing the table in browser
-Get-Table -OpenInBrowser $true -InsertCSS "..\..\Common\style.css"
+Get-Table -OpenInBrowser $true -InsertCSS "$common\style.css"

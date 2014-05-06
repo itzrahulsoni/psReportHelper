@@ -1,7 +1,8 @@
 $common = "..\..\Common"
 Import-Module "$Common\helperReport.psm1" -Force
 Set-ReportFile -Folder "." -File ".\Output.htm" -OverWrite $true   #Set a report file
-Add-TableStart -Width 280 -BorderColor Brown -BorderWidth 3         #Start the Table
+
+Add-TableStart -Width 280 -BorderColor Brown -BorderWidth 3        #Start the Table
 Set-TableColumnWidth 80, 100, 100                                  #Width of individual columns
 
 Add-TableStartRow
@@ -16,7 +17,8 @@ foreach($line in (Get-WmiObject win32_logicaldisk))
     #Adding each cell individually
     Add-TableCells -Data $line.DeviceID
 
-    if($line.FreeSpace -le ($line.Size * 0.2))
+    #If the space available is less than 10% of the disk size, alert
+    if($line.FreeSpace -le ($line.Size * 0.1))
     {
         Add-TableCells -Data ($line.FreeSpace / 1GB).ToString("0 GB"), ($line.Size / 1GB).ToString("0 GB") -IsRed $true -Align "right" -BorderColor Red
     }
