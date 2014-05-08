@@ -6,7 +6,7 @@ Add-TableStart -Width 280 -BorderColor Brown -BorderWidth 3        #Start the Ta
 Set-TableColumnWidth 80, 100, 100                                  #Width of individual columns
 
 Add-TableStartRow
-Add-TableCells "Drive", "Free Space", "Total Space" -IsHeader $true
+Add-TableCells "Date", "Time", "Hotfix" -IsHeader $true
 Add-TableEndRow
 
 foreach($line in (Get-WmiObject win32_logicaldisk))
